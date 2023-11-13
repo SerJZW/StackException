@@ -5,7 +5,7 @@ internal class Programm
     {
         try
         {
-            MainStack myStack = new MainStack(3);
+            MainStack myStack = new MainStack(4);
             MainList myList = new MainList();
             //myList.Add(1);
             //myList[2]++;
@@ -17,9 +17,11 @@ internal class Programm
             myStack.Push(1);
             myStack.Push(2);
             myStack.Push(3);
-
-            Console.WriteLine("Found " + myStack.Find(3)); 
-            myStack.Push(6);
+            myStack.Push(4);
+            myStack.Push(5);
+            myStack.Push(5);
+            Console.WriteLine("Found " + myStack.Find(4));
+           
         }
         catch (Exception ex)
         {

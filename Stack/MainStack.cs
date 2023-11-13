@@ -8,9 +8,16 @@ internal class MainStack
 
     public MainStack(int size)
     {
-        if (size <= 0)
+        try
         {
-            throw new CapacityException("Размер стека должен быть больше 0");
+            if (size <= 0)
+            {
+                throw new CapacityException("Размер стека должен быть больше 0");
+            }
+        }
+        catch (CapacityException e)
+        {
+            Console.WriteLine($"{e.Message}");
         }
 
         this.size = size;
@@ -50,7 +57,7 @@ internal class MainStack
     {
         if (IsEmpty())
         {
-            return null;
+            throw new NullException("Top was Null");
         }
         var data = list.RemoveLast();
         list.Add(data);
@@ -59,19 +66,21 @@ internal class MainStack
 
     public int Find(int item)
     {
-        for (int i = 0; i < item; i++)
+        Node current = list.Head;
+        int index = 0;
+
+        while (current != null)
         {
-            if (item == list.Count)
-            {             
-                return item;
-            }
-            else
+            if (current.Data == item)
             {
-                throw new IndexValueException("Некорректный индекс для доступа к элементу в стеке");
+                return index; 
             }
-           
+
+            current = current.Next;
+            index++;
         }
-        return item;
+
+        throw new IndexValueException($"Элемент {item} не найден в стеке");
     }
 
     public override string ToString()
