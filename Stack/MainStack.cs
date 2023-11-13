@@ -50,11 +50,28 @@ internal class MainStack
     {
         if (IsEmpty())
         {
-            throw new IndexValueException("Некорректный индекс для доступа к элементу в стеке");
+            return null;
         }
         var data = list.RemoveLast();
         list.Add(data);
         return data;
+    }
+
+    public int Find(int item)
+    {
+        for (int i = 0; i < item; i++)
+        {
+            if (item == list.Count)
+            {             
+                return item;
+            }
+            else
+            {
+                throw new IndexValueException("Некорректный индекс для доступа к элементу в стеке");
+            }
+           
+        }
+        return item;
     }
 
     public override string ToString()
@@ -73,4 +90,5 @@ internal class MainStack
     {
         return list.Count == 0;
     }
+
 }
